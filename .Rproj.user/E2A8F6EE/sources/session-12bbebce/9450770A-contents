@@ -1,0 +1,57 @@
+# Data Analysis Example
+# Statistical modeling
+# Updated: 2023-07-07
+
+library(tidyverse)
+library(lubridate)
+library(caret)
+library(fastDummies)
+
+# Load the dataset
+iris_dataset <- tibble(iris)
+# Select features (columns) and target columns
+colnames(iris_dataset)
+
+# Create new columns: epi-week, epi-year, tick density
+
+# Explore each column
+# Make sure that each column is the correct data types
+# Take note of how many null values there are in each columns
+# Note imputation strategy 
+
+# Look at the data distribution of the target column
+
+# For numerical feature columns, perform standardization
+df <- df %>% mutate(feature_scaled = scale())
+# For categorical feature columns, create dummy columns
+df <- df %>% dummy_cols(select_columns = )
+
+# Separate data into training and testing dataset
+
+# Convention is 80% of data will be used for training and 20% for testing
+set.seed(123) #random state
+train <- slice_sample(df, prop=0.80)
+test  <- anti_join(df, train)
+
+# Specify cross validation method
+ctrl <- trainControl(method="cv", number=10)
+
+# Create your models
+model_1 <- train("y ~ x1 + x2", data=train_set, method="lm", trControl=ctrl)
+
+# Perform cross-validation or measure model accuracy on the TRAINING set
+print(model_1)
+
+# Specify best model
+best_model <- model_1
+  
+# Create predictions using the TEST set using your best model
+X_test <- 
+y_test <- 
+model_predictions <- predict(model_1, new_data=X_test)
+
+# Measure performance of the model: benchmark will depend on the type of model
+# Linear regression: RMSE, R2
+# Logistic regression: accuracy
+R2(y_test, model_predictions)
+
